@@ -1,0 +1,24 @@
+databaseChangeLog:
+    - objectQuotingStrategy: QUOTE_ALL_OBJECTS
+    - property:
+        dbms: oracle
+        name: now
+        value: sysdate
+    - property:
+        dbms: h2, mysql, mariadb, postgresql
+        name: now
+        value: now()
+    - property:
+        dbms: mssql
+        name: now
+        value: getdate()
+  
+    - include:
+        file: init-sequence.yaml
+        relativeToChangelogFile: true
+    # - include:
+    #     file: kakaopay-v1.yaml
+    #     relativeToChangelogFile: true
+    # - include:
+    #     file: ./data/table.yaml
+    #     relativeToChangelogFile: true

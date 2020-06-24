@@ -1,0 +1,21 @@
+spring:
+    jpa:
+      hibernate:
+        use_new_id_generator_mappings: false
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+          show_sql: false
+          format_sql: false
+          use_sql_comments: false
+          hbm2ddl.auto: validate
+          globally_quoted_identifiers: true
+          jdbc:
+            time_zone: UTC
+    datasource:
+      driverClassName: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://${DB_HOST:localhost}/${DB_NAME:kakaopay}?createDatabaseIfNotExist=true&serverTimezone=UTC
+      username: root
+      password: root
+      hikari:
+        maximumPoolSize: 5
