@@ -1,4 +1,4 @@
-PHONY: clean image push
+.PHONY: clean image push bash
 
 DOCKER_IMAGE_NAME=lechuckroh/kakaopay-2020-server:latest
 
@@ -10,3 +10,6 @@ image: clean
 
 push:
 	@docker push $(DOCKER_IMAGE_NAME)
+
+bash:
+	@docker run --rm -it $(DOCKER_IMAGE_NAME) bash

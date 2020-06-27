@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  api:
+    image: lechuckroh/kakaopay-2020-server:latest
+    restart: unless-stopped
+    environment:
+      spring.jpa.properties.hibernate.hbm2ddl.auto: validate
+      spring.liquibase.enabled: "true"
+    ports:
+      - 8080:8080

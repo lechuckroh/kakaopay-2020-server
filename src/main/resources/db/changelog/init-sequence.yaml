@@ -1,10 +1,10 @@
 databaseChangeLog:
-    - changeSet:
-        id: 1
-        author: Lechuck
-        dbms: oracle, postgresql
-        objectQuotingStrategy: QUOTE_ALL_OBJECTS
-        changes:
+  - changeSet:
+      id: 1
+      author: Lechuck
+      dbms: oracle, postgresql
+      objectQuotingStrategy: QUOTE_ALL_OBJECTS
+      changes:
         - createSequence:
             sequenceName: hibernate_sequence
             startValue: 10

@@ -1,19 +1,21 @@
-FROM openjdk:14 as build
+FROM openjdk:14 as builder
 
 COPY . /tmp/app
 WORKDIR /tmp/app
 
 RUN ./gradlew clean build
+WORKDIR /tmp/app/build/distributions
+RUN tar xvf kakaopay.tar
 
 
-FROM openjdk:14 as release
+FROM openjdk:14
 LABEL MAINTAINER="Lechuck Roh<lechuckroh@gmail.com>"
 
-RUN mkdir -p /app
-COPY --from=build /tmp/app/build/distributions/kakaopay.tar /
-ADD tools/wait /wait
+COPY --from=builder /tmp/app/build/distributions/kakaopay /usr/src/kakaopay
+ADD tools/wait /
 RUN chmod +x /wait
-WORKDIR /kakaopay/bin
+
+WORKDIR /usr/src/kakaopay/bin
 
 EXPOSE 8080
 

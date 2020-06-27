@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl.auto: validate
+  datasource:
+    driverClassName: net.sf.log4jdbc.DriverSpy
+    url: jdbc:log4jdbc:h2:mem:kakaopay;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false
+    username: sa
+    password:
+  liquibase:
+    enabled: true

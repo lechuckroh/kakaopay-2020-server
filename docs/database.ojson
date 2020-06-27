@@ -1,0 +1,150 @@
+{
+  "author": "Lechuck Roh",
+  "name": "카카오페이 뿌리기",
+  "version": "1.0.0",
+  "tables": [
+    {
+      "name": "room",
+      "columns": [
+        {
+          "name": "id",
+          "type": "string",
+          "desc": "대화방 식별값",
+          "size": 40,
+          "pk": true,
+          "autoinc": true
+        }
+      ],
+      "desc": "대화방",
+      "group": "Common"
+    },
+    {
+      "name": "room_user",
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "long",
+          "desc": "사용자 ID",
+          "pk": true
+        },
+        {
+          "name": "room_id",
+          "type": "string",
+          "desc": "대화방 식별값",
+          "size": 40,
+          "pk": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "desc": "대화방 참가 시각"
+        }
+      ],
+      "desc": "대화방 참가 사용자",
+      "group": "Common"
+    },
+    {
+      "name": "sprinkle",
+      "columns": [
+        {
+          "name": "token",
+          "type": "string",
+          "desc": "뿌리기 고유 토큰",
+          "size": 3,
+          "pk": true
+        },
+        {
+          "name": "user_id",
+          "type": "long",
+          "desc": "뿌린 사용자"
+        },
+        {
+          "name": "room_id",
+          "type": "string",
+          "desc": "대화방 식별값",
+          "size": 40
+        },
+        {
+          "name": "total_amount",
+          "type": "int",
+          "desc": "뿌린 금액"
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "desc": "뿌린 시각"
+        }
+      ],
+      "desc": "뿌리기 요청",
+      "group": "Common"
+    },
+    {
+      "name": "sprinkle_item",
+      "columns": [
+        {
+          "name": "id",
+          "type": "long",
+          "pk": true,
+          "autoinc": true
+        },
+        {
+          "name": "token",
+          "type": "string",
+          "desc": "뿌리기 고유 토큰",
+          "size": 3,
+          "unique": true
+        },
+        {
+          "name": "item_seq",
+          "type": "int",
+          "desc": "뿌리기 요청 분배건 순서",
+          "unique": true
+        },
+        {
+          "name": "amount",
+          "type": "int",
+          "desc": "뿌리기 분배 금액"
+        },
+        {
+          "name": "received_user_id",
+          "type": "long",
+          "desc": "받은 사용자",
+          "nullable": true
+        },
+        {
+          "name": "created_at",
+          "type": "datetime",
+          "desc": "뿌린 시각"
+        },
+        {
+          "name": "updated_at",
+          "type": "datetime",
+          "desc": "받은 사용자가 있는 경우 받은 시각",
+          "nullable": true
+        }
+      ],
+      "desc": "뿌리기 요청 분배건",
+      "group": "Common"
+    },
+    {
+      "name": "user",
+      "columns": [
+        {
+          "name": "id",
+          "type": "long",
+          "pk": true,
+          "autoinc": true
+        },
+        {
+          "name": "login_id",
+          "type": "string",
+          "desc": "사용자 로그인 ID",
+          "size": 40,
+          "unique": true
+        }
+      ],
+      "desc": "사용자",
+      "group": "Common"
+    }
+  ]
+}

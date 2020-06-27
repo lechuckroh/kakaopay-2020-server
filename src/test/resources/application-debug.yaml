@@ -1,13 +1,3 @@
-logging:
-  level:
-    root: ${LOG_LEVEL:INFO}
-    jdbc:
-      audit: WARN
-      sqlonly: WARN
-      sqltiming: ${LOG_LEVEL:INFO}
-      resultset: WARN
-      resultsettable: WARN
-
 spring:
   jpa:
     hibernate:
@@ -23,11 +13,8 @@ spring:
         jdbc:
           time_zone: UTC
   datasource:
-    driverClassName: org.h2.Driver
-    url: jdbc:h2:mem:kakaopay;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false
+    driverClassName: net.sf.log4jdbc.DriverSpy
+    url: jdbc:log4jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;DATABASE_TO_UPPER=false
     username: sa
     password:
-    hikari:
-      maximumPoolSize: 5
-  liquibase:
-    enabled: false
+  

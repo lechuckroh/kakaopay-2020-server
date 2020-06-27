@@ -1,0 +1,21 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Lechuck
+      changes:
+        - loadData:
+            columns:
+              - column:
+                  name: user_id
+                  type: numeric
+              - column:
+                  name: room_id
+                  type: string
+              - column:
+                  name: created_at
+                  value: ${now}
+            encoding: UTF-8
+            file: room_user.csv
+            relativeToChangelogFile: true
+            separator: ','
+            tableName: room_user

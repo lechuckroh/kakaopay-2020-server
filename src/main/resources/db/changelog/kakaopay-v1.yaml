@@ -1,2 +1,154 @@
 databaseChangeLog:
   - objectQuotingStrategy: QUOTE_ALL_OBJECTS
+  - changeSet:
+      id: 1-1
+      author: Lechuck Roh
+      changes:
+        - createTable:
+            tableName: room
+            columns:
+              - column:
+                  name: id
+                  type: varchar(40)
+                  constraints:
+                    primaryKey: true
+  - changeSet:
+      id: 2-1
+      author: Lechuck Roh
+      changes:
+        - createTable:
+            tableName: room_user
+            columns:
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: room_id
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 2-2
+      author: Lechuck Roh
+      changes:
+        - addPrimaryKey:
+            tableName: room_user
+            columnNames: room_id, user_id
+  - changeSet:
+      id: 3-1
+      author: Lechuck Roh
+      changes:
+        - createTable:
+            tableName: sprinkle
+            columns:
+              - column:
+                  name: token
+                  type: varchar(3)
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: user_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: room_id
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: total_amount
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: created_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 4-1
+      author: Lechuck Roh
+      changes:
+        - createTable:
+            tableName: sprinkle_item
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: token
+                  type: varchar(3)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: item_seq
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: amount
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: received_user_id
+                  type: bigint
+              - column:
+                  name: created_at
+                  type: datetime
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updated_at
+                  type: datetime
+  - changeSet:
+      id: 4-2
+      author: Lechuck Roh
+      changes:
+        - addUniqueConstraint:
+            tableName: sprinkle_item
+            columnNames: item_seq, token
+            constraintName: sprinkle_item_uq
+  - changeSet:
+      id: 5-1
+      author: Lechuck Roh
+      changes:
+        - createTable:
+            tableName: user
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: login_id
+                  type: varchar(40)
+                  constraints:
+                    nullable: false
+                    unique: true
+  - changeSet:
+      id: 5-2
+      author: Lechuck Roh
+      preConditions:
+        dbms:
+          type: derby, h2, mssql, mariadb, mysql, postgresql, sqlite
+        onError: CONTINUE
+        onFail: CONTINUE
+      changes:
+        - addUniqueConstraint:
+            tableName: user
+            columnNames: login_id
+            constraintName: user_uq

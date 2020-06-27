@@ -1,4 +1,3 @@
-HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -30,3 +29,7 @@ out/
 
 ### VS Code ###
 .vscode/
+
+/application-*.yaml
+.DS_Store
+/database.h2.*
