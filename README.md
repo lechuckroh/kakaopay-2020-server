@@ -36,7 +36,7 @@ $ ./gradlew clean build
 * docker-compose
 
 Java 사용시:
-* Java 1.8+
+* Java 11+
 
 ## Build
 도커를 사용해 실행하는 경우 빌드 과정을 건너뛰고 바로 [실행](#run) 문서를 참고하세요.
