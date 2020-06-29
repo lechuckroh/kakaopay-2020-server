@@ -59,6 +59,7 @@ class SprinkleService(
             }
 
             // count-1 만큼 랜덤 숫자를 가지는 리스트 생성
+            // 리스트 항목: [v1, v2, ..., vn-1, maxValue]
             val list = (1 until count).map {
                 RandomUtils.nextInt(0, maxValue)
             }.toMutableList()
@@ -68,11 +69,14 @@ class SprinkleService(
             list.sort()
 
             // 리스트의 n-1 ~ 1번째 인덱스까지 루프를 돌면서, A[n] = A[n] - A[n-1]
+            // 리스트 항목: [v1, v2-v1, ..., vn-1 - vn-2, maxValue - vn-1]
+            // 리스트 합계: maxValue
             (count - 1 downTo 1).forEach {
                 list[it] -= list[it - 1]
             }
 
             // 리스트의 각 항목의 값을 최소값만큼 더한다.
+            // 리스트 합계: maxValue + minValue * count = sum
             return list.map { it + minValue }
         }
     }
