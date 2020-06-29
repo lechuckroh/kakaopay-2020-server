@@ -20,7 +20,7 @@ $ cd deploy/docker-compose
 $ docker-compose up -d
 $ ./demo.sh
 ```
-> `demo.sh`를 실행하려면 [HTTPie](https://httpie.org/), [jq](https://stedolan.github.io/jq/) 가 설치되어 있어야 합니다.
+> `demo.sh`를 실행하려면 [httpie](https://httpie.org/), [jq](https://stedolan.github.io/jq/) 가 설치되어 있어야 합니다.
 
 
 gradle을 사용해 직접 빌드 및 테스트:

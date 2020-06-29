@@ -35,6 +35,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.liquibase:liquibase-core")
 	runtimeOnly("com.h2database:h2")
+	runtimeOnly("mysql:mysql-connector-java:8.0.18")
 	runtimeOnly("org.lazyluke:log4jdbc-remix:0.2.7")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")

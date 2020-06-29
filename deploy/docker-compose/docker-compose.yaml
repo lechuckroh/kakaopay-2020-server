@@ -5,7 +5,24 @@ services:
     image: lechuckroh/kakaopay-2020-server:latest
     restart: unless-stopped
     environment:
-      spring.jpa.properties.hibernate.hbm2ddl.auto: validate
-      spring.liquibase.enabled: "true"
+      spring.profiles.active: mysql
+      spring.database.username: kakaopay
+      spring.database.password: kakaopay
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: kakaopay
+      WAIT_HOSTS: db:3306
     ports:
       - 8080:8080
+  db:
+    image: mariadb
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: kakaopay
+      MYSQL_PASSWORD: kakaopay
+      MYSQL_DATABASE: kakaopay
+      TZ: UTC
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    ports:
+      - "3306"
