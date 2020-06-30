@@ -40,6 +40,9 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
+	testImplementation("org.mockito:mockito-junit-jupiter:3.3.3")
+	testImplementation("org.mockito:mockito-inline:3.3.3")
+	testImplementation("com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0")
 	testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
 }
 

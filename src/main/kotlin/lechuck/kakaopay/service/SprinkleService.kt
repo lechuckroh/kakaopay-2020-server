@@ -23,7 +23,6 @@ class SprinkleService(
     companion object : Log() {
         const val receiveTimeout = DateUtils.MILLIS_PER_MINUTE * 10
         const val statusTimeout = DateUtils.MILLIS_PER_DAY * 7
-        const val maxSprinkleRetryCount = 5
 
         /**
          * 뿌리기 토큰 생성.
@@ -88,12 +87,17 @@ class SprinkleService(
      * @throws IllegalArgumentException 주어진 조건으로 분배할 수 없는 경우 발생
      */
     @Throws(java.lang.IllegalArgumentException::class)
-    fun sprinkle(sum: Int, count: Int, userId: Long, roomId: String): String {
+    fun sprinkle(sum: Int,
+                 count: Int,
+                 userId: Long,
+                 roomId: String,
+                 maxSprinkleRetryCount: Int = 5
+    ): String {
         // 뿌리기 생성
         // 토큰 중복 에러 발생시 최대 횟수까지 재시도
         var retryCount = 0
         var success = false
-        var token: String = ""
+        var token = ""
         while (!success && retryCount < maxSprinkleRetryCount) {
             try {
                 token = createToken()
